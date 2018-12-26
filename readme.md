@@ -1,4 +1,4 @@
-#Turning Google Sheets Macros into an Add-On
+# Turning Google Sheets Macros into an Add-On
 
 Per the [GAS Macros documentation](https://developers.google.com/apps-script/guides/sheets/macros), you can't distribute macros using Add-ons. 
 
