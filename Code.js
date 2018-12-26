@@ -23,17 +23,22 @@ function onInstall(e) {
  *     running in, inspect e.authMode.
  */
 function onOpen(e) {
-  SpreadsheetApp.getUi().createAddonMenu()
-      .addItem('Convert formulas to values (active tab only)','formulasToValuesActiveSheet')
-      .addItem('Convert formulas to values (globally)','formulasToValuesGlobal')
-      .addItem('Sort tabs','sortSheets')
-      .addItem('Unhide rows and columns (active tab only)','unhideRowsColumnsActiveSheet')
-      .addItem('Unhide rows and columns (globally)','unhideRowsColumnsGlobal')
-      .addItem('Set all tab colors to red','setTabColor')
-      .addItem('Reset all tab colors','resetTabColor')
-      .addItem('Hide all tabs except active one','hideAllSheetsExceptActive')
-      .addItem('Unhide all tabs','unhideAllSheets')
-      .addItem('Reset filters','resetFilter')
+  var ui = SpreadsheetApp.getUi();
+  ui.createAddonMenu()
+      .addSubMenu(ui.createMenu('Formulas')
+        .addItem('Convert formulas to values (active tab only)','formulasToValuesActiveSheet')
+        .addItem('Convert formulas to values (globally)','formulasToValuesGlobal'))
+      .addSubMenu(ui.createMenu('Rows and columns')
+        .addItem('Unhide rows and columns (active tab only)','unhideRowsColumnsActiveSheet')
+        .addItem('Unhide rows and columns (globally)','unhideRowsColumnsGlobal'))
+      .addSubMenu(ui.createMenu('Tabs')
+        .addItem('Set all tab colors to red','setTabColor')
+        .addItem('Reset all tab colors','resetTabColor')
+        .addItem('Hide all tabs except active one','hideAllSheetsExceptActive')
+        .addItem('Unhide all tabs','unhideAllSheets')
+        .addItem('Sort tabs','sortSheets'))
+      .addSubMenu(ui.createMenu('Filters')
+        .addItem('Reset filters','resetFilter'))
       .addToUi();
 }
 
