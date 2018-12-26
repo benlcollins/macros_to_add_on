@@ -2,16 +2,5 @@
   "timeZone": "America/New_York",
   "dependencies": {
   },
-  "exceptionLogging": "STACKDRIVER",
-  "sheets": {
-    "macros": [{
-      "menuName": "upSheet",
-      "functionName": "upSheet",
-      "defaultShortcut": "Ctrl+Alt+Shift+1"
-    }, {
-      "menuName": "downSheet",
-      "functionName": "downSheet",
-      "defaultShortcut": "Ctrl+Alt+Shift+2"
-    }]
-  }
+  "exceptionLogging": "STACKDRIVER"
 }

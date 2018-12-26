@@ -23,7 +23,16 @@ function onInstall(e) {
  */
 function onOpen(e) {
   SpreadsheetApp.getUi().createAddonMenu()
-      .addItem('Convert formulas to Values (Active Sheet only)','formulasToValuesActiveSheet')
+      .addItem('Convert formulas to values (active tab only)','formulasToValuesActiveSheet')
+      .addItem('Convert formulas to values (globally)','formulasToValuesGlobal')
+      .addItem('Sort tabs','sortSheets')
+      .addItem('Unhide rows and columns (active tab only)','unhideRowsColumnsActiveSheet')
+      .addItem('Unhide rows and columns (globally)','unhideRowsColumnsGlobal')
+      .addItem('Set all tab colors to red','setTabColor')
+      .addItem('Reset all tab colors','resetTabColor')
+      .addItem('Hide all tabs except active one','hideAllSheetsExceptActive')
+      .addItem('Unhide all tabs','unhideAllSheets')
+      .addItem('Reset filters','resetFilter')
       .addToUi();
 }
 
