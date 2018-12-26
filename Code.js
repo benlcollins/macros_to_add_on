@@ -1,6 +1,7 @@
 /** 
  * @OnlyCurrentDoc Make macros available across G Suite domain
  */
+var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
 
 /**
  * Runs when the add-on is installed.
@@ -40,8 +41,7 @@ function onOpen(e) {
  * Convert all formulas to values in the active sheet
  */ 
 function formulasToValuesActiveSheet() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var range = sheet.getDataRange();
+  var range = spreadsheet.getActiveSheet().getDataRange();
   range.copyValuesToRange(sheet, 1, range.getLastColumn(), 1, range.getLastRow());
 };
 
@@ -49,7 +49,7 @@ function formulasToValuesActiveSheet() {
  * Convert all formulas to values in every sheet of the Google Sheet
  */
 function formulasToValuesGlobal() {
-  var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+  var sheets = spreadsheet.getSheets();
   sheets.forEach(function(sheet) {
     var range = sheet.getDataRange();
     range.copyValuesToRange(sheet, 1, range.getLastColumn(), 1, range.getLastRow());
@@ -60,7 +60,6 @@ function formulasToValuesGlobal() {
  * Sort sheets alphabetically
  */
 function sortSheets() {
-  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   var sheets = spreadsheet.getSheets();
   var sheetNames = [];
   sheets.forEach(function(sheet,i) {
@@ -76,7 +75,7 @@ function sortSheets() {
  * Unhide all rows and columns in current Sheet data range
  */
 function unhideRowsColumnsActiveSheet() {
-  var sheet = SpreadsheetApp.getActiveSheet();
+  var sheet = spreadsheet.getActiveSheet();
   var range = sheet.getDataRange();
   sheet.unhideRow(range);
   sheet.unhideColumn(range);
@@ -86,7 +85,7 @@ function unhideRowsColumnsActiveSheet() {
  * Unhide all rows and columns in data ranges of entire Google Sheet
  */
 function unhideRowsColumnsGlobal() {
-  var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+  var sheets = spreadsheet.getSheets();
   sheets.forEach(function(sheet) {
     var range = sheet.getDataRange();
     sheet.unhideRow(range);
@@ -98,7 +97,7 @@ function unhideRowsColumnsGlobal() {
  * Set all Sheets tabs to red
  */
 function setTabColor() {
-  var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+  var sheets = spreadsheet.getSheets();
   sheets.forEach(function(sheet) {
     sheet.setTabColor("ff0000");
   });
@@ -108,7 +107,7 @@ function setTabColor() {
  * Remove all Sheets tabs color
  */
 function resetTabColor() {
-  var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+  var sheets = spreadsheet.getSheets();
   sheets.forEach(function(sheet) {
     sheet.setTabColor(null);
   });
@@ -118,7 +117,7 @@ function resetTabColor() {
  * Hide all sheets except the active one
  */
 function hideAllSheetsExceptActive() {
-  var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+  var sheets = spreadsheet.getSheets();
   sheets.forEach(function(sheet) {
     if (sheet.getName() != SpreadsheetApp.getActiveSheet().getName()) 
       sheet.hideSheet();
@@ -129,7 +128,7 @@ function hideAllSheetsExceptActive() {
  * Unhide all sheets in Google Sheet
  */
 function unhideAllSheets() {
-  var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+  var sheets = spreadsheet.getSheets();
   sheets.forEach(function(sheet) {
     sheet.showSheet();
   });
@@ -140,7 +139,7 @@ function unhideAllSheets() {
  * Reset all filters for a data range on current Sheet
  */
 function resetFilter() {
-  var sheet = SpreadsheetApp.getActiveSheet();
+  var sheet = spreadsheet.getActiveSheet();
   var range = sheet.getDataRange();
   range.getFilter().remove();
   range.createFilter();
