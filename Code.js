@@ -2,24 +2,30 @@
  * @OnlyCurrentDoc Make macros available across G Suite domain
  */
 
-// 3. Format Text Example
-function FormatText() {
-  var spreadsheet = SpreadsheetApp.getActive();
-  spreadsheet.getActiveRangeList().setFontWeight('bold')
-  .setFontStyle('italic')
-  .setFontColor('#ff0000')
-  .setFontSize(18)
-  .setFontFamily('Montserrat');
-};
+/**
+ * Runs when the add-on is installed.
+ * @param {object} e The event parameter for a simple onInstall trigger. To
+ *     determine which authorization mode (ScriptApp.AuthMode) the trigger is
+ *     running in, inspect e.authMode. (In practice, onInstall triggers always
+ *     run in AuthMode.FULL, but onOpen triggers may be AuthMode.LIMITED or
+ *     AuthMode.NONE.)
+ */
+function onInstall(e) {
+  onOpen();
+}
 
-// 6.3 convert all formulas to values in the active sheet
+/** 
+ * Convert all formulas to values in the active sheet
+ */ 
 function formulasToValuesActiveSheet() {
   var sheet = SpreadsheetApp.getActiveSheet();
   var range = sheet.getDataRange();
   range.copyValuesToRange(sheet, 1, range.getLastColumn(), 1, range.getLastRow());
 };
 
-// 6.4 convert all formulas to values in every sheet of the Google Sheet
+/**
+ * Convert all formulas to values in every sheet of the Google Sheet
+ */
 function formulasToValuesGlobal() {
   var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
   sheets.forEach(function(sheet) {
@@ -28,7 +34,9 @@ function formulasToValuesGlobal() {
   });
 };
 
-// 6.5 sort sheets alphabetically
+/** 
+ * Sort sheets alphabetically
+ */
 function sortSheets() {
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   var sheets = spreadsheet.getSheets();
@@ -42,7 +50,9 @@ function sortSheets() {
   });
 };
     
-// 6.6 unhide all rows and columns in current Sheet data range
+/** 
+ * Unhide all rows and columns in current Sheet data range
+ */
 function unhideRowsColumnsActiveSheet() {
   var sheet = SpreadsheetApp.getActiveSheet();
   var range = sheet.getDataRange();
@@ -50,7 +60,9 @@ function unhideRowsColumnsActiveSheet() {
   sheet.unhideColumn(range);
 }
 
-// 6.7 unhide all rows and columns in data ranges of entire Google Sheet
+/** 
+ * Unhide all rows and columns in data ranges of entire Google Sheet
+ */
 function unhideRowsColumnsGlobal() {
   var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
   sheets.forEach(function(sheet) {
@@ -60,7 +72,9 @@ function unhideRowsColumnsGlobal() {
   });
 };
 
-// 6.8 set all Sheets tabs to red
+/** 
+ * Set all Sheets tabs to red
+ */
 function setTabColor() {
   var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
   sheets.forEach(function(sheet) {
@@ -68,7 +82,9 @@ function setTabColor() {
   });
 };
   
-// 6.9 remove all Sheets tabs color
+/** 
+ * Remove all Sheets tabs color
+ */
 function resetTabColor() {
   var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
   sheets.forEach(function(sheet) {
@@ -76,7 +92,9 @@ function resetTabColor() {
   });
 };
 
-// 6.10 hide all sheets except the active one
+/** 
+ * Hide all sheets except the active one
+ */
 function hideAllSheetsExceptActive() {
   var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
   sheets.forEach(function(sheet) {
@@ -85,7 +103,9 @@ function hideAllSheetsExceptActive() {
   });
 };
 
-// 6.11 Unhide all sheets in Google Sheet
+/** 
+ * Unhide all sheets in Google Sheet
+ */
 function unhideAllSheets() {
   var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
   sheets.forEach(function(sheet) {
@@ -94,7 +114,9 @@ function unhideAllSheets() {
 };
 
 
-// 6.12 reset all filters for a data range on current Sheet
+/** 
+ * Reset all filters for a data range on current Sheet
+ */
 function resetFilter() {
   var sheet = SpreadsheetApp.getActiveSheet();
   var range = sheet.getDataRange();
