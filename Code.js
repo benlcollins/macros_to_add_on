@@ -141,6 +141,8 @@ function unhideAllSheets() {
 function resetFilter() {
   var sheet = spreadsheet.getActiveSheet();
   var range = sheet.getDataRange();
-  range.getFilter().remove();
-  range.createFilter();
+  if (range.getFilter() !== null) { 
+    range.getFilter().remove();
+    range.createFilter(); 
+  }
 }
