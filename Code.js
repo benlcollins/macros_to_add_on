@@ -11,7 +11,20 @@
  *     AuthMode.NONE.)
  */
 function onInstall(e) {
-  onOpen();
+  onOpen(e);
+}
+
+/**
+ * Creates a new menu entry in the Sheet Add-On menu when Sheet is opened.
+ *
+ * @param {object} e The event parameter for a simple onOpen trigger. To
+ *     determine which authorization mode (ScriptApp.AuthMode) the tigger is
+ *     running in, inspect e.authMode.
+ */
+function onOpen(e) {
+  SpreadsheetApp.getUi().createAddonMenu()
+      .addItem('Convert formulas to Values (Active Sheet only)','formulasToValuesActiveSheet')
+      .addToUi();
 }
 
 /** 
